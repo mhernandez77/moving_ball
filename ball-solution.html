@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<!--<head>-->
+<!--    <title>Simulation - ball movement</title>-->
+<!--</head>-->
+
+<body>
+<!--    <p>Refresh this page to see your code changes in action</p>-->
+    <!-- YOUR CODE STARTS HERE -->
+    <div id="ball"
+         style="
+  z-index:5;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:pink"></div>
+
+
+    <!-- YOUR CODE ENDS HERE -->
+</body>
+<!-- DO NOT EDIT PAST THIS POINT -->
+<!--<script src='ball.js'></script>-->
+<script src='ball-solution.js'></script>
+
+<script>
+// Declared 'ball' variable as the HTML element with the id of 'ball'
+var ball = document.getElementById('ball');
+//Number pixels that are changed for movement
+var velocityX = 3;
+var velocityY = 3;
+//Frequency the move ball function will be executed
+var speed = 10;
+//Starting position of the ball in pixels
+var positionX = 200;
+var positionY = 200;
+//Limits of ball travels in pixels
+var limitX1 = 50;
+var limitX2 = 200;
+var limitY1 = 50;
+var limitY2 = 400;
+
+
+
+const randomColor = () => {
+    //Randomly generates an integer for the Red, blue, green color variable
+    var r = Math.floor(255*(Math.random()));
+    var b = Math.floor(255*(Math.random()));
+    var g = Math.floor(255*(Math.random()));
+    //combined color variables via concatenation
+    var color = 'rbg(' + r + ', ' + g + ', ' + b + ')';
+    //apllies new color by updating css
+    ball.style.background = color;
+}
+//Timer for color change
+setInterval(randomColor,500);
+
+//Ball initial size to match height/width, size limits, & growth/shrink rate
+var size =50;
+var sizeMin = 25;
+var sizeMax = 150;
+var resizeRate = 10;
+//Another arrow function to make the ball grow & shrink
+const resizeBall = () => {
+    //If the ball's size is less than the min size
+    // or the ball's size is greater than the max size
+    if(size < sizeMin || size > sizeMax)
+    //the growth rate is multiplied by -1
+    resizeRate *= -1;
+//  The ball's size is changed
+    size += resizeRate;
+//  Applies new width & height by updating CSS
+    ball.style.height = `${size}px`;
+    ball.style.width = `${size}px`;
+}
+
+setInterval (resizeBall, 500);
+</script>
+
+</html>
